@@ -2,10 +2,33 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<title>Новости EPAM</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="js/jquery.tmpl.js"></script>
+		<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
 		<script type="text/javascript" src="js/trace.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript" src="js/slider.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
 	</head>
+		<script id="newsTmpl" type="text/x-jquery-tmpl">		
+			<header>
+				<h1>${title}</h1>
+				<span>${publishedDate}</span>
+			</header>
+			<article>
+				<ul class="bxslider">
+					{{each $data.images}}
+					<li>
+						<img src="${$value}">
+					</li>
+					{{/each}}
+				</ul>
+				<p>${description}</p>
+			</article>
+		</script>
 	<body>
 	</body>
 </html>
