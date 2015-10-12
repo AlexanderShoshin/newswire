@@ -1,47 +1,47 @@
-var curTopic, slideTime, slider;
-
-slideTime = 2000;
-
 $(function() {
+	var curTopic;
+	var slider;
+	var slideTime = 2000;
+
 	createTemplate();
 	startNews(news);
-});
 
-function startNews() {
-	curTopic = 0;
-	nextTopic();
-}
-
-function createTemplate() {
-	$("#newsTmpl").template("newsTmpl");
-}
-
-function nextTopic() {
-	if (curTopic === news.length) {
-		curTopic = 1;
-	} else {
-		curTopic++;
+	function startNews() {
+		curTopic = 0;
+		nextTopic();
 	}
 	
-	deleteTopic();
-	showTopic(news[curTopic-1]);
-	
-	slider = new Slider(".bxslider");
-	slider.showAllImages(slideTime, nextTopic);
-}
+	function createTemplate() {
+		$("#newsTmpl").template("newsTmpl");
+	}
 
-function deleteTopic() {
-	$("body").empty();
-}
+	function nextTopic() {
+		if (curTopic === news.length) {
+			curTopic = 1;
+		} else {
+			curTopic++;
+		}
+		
+		deleteTopic();
+		showTopic(news[curTopic-1]);
+		
+		slider = new Slider(".bxslider");
+		slider.showAllImages(slideTime, nextTopic);
+	}
 
-function showTopic(topic) {
-	addTemplate(fillTemplate(topic));
-}
+	function deleteTopic() {
+		$("body").empty();
+	}
 
-function addTemplate(template) {
-	$("body").append(template);
-}
+	function showTopic(topic) {
+		addTemplate(fillTemplate(topic));
+	}
 
-function fillTemplate(templateData) {
-	return $.tmpl("newsTmpl", templateData);
-}
+	function addTemplate(template) {
+		$("body").append(template);
+	}
+
+	function fillTemplate(templateData) {
+		return $.tmpl("newsTmpl", templateData);
+	}
+});

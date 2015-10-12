@@ -1,13 +1,16 @@
 var Slider = function(selector) {
+	var imagesCnt = $(selector + ' li').length;
 	this.picSlider = $(selector).bxSlider({
 		mode: "fade",
-		controls: false
+		controls: false,
+		pager: imagesCnt === 1 ? false : true
 	});
 };
 
 Slider.prototype.showAllImages = function(slideTime, onDone) {
 	this.onDone = onDone;
-	setTimeout(this.showNextImage.bind(this), slideTime);
+	this.slideTime = slideTime;
+	setTimeout(this.showNextImage.bind(this), this.slideTime);
 };
 
 Slider.prototype.showNextImage = function() {
@@ -15,6 +18,6 @@ Slider.prototype.showNextImage = function() {
 		this.onDone();
 	} else {
 		this.picSlider.goToNextSlide();
-		setTimeout(this.showNextImage.bind(this), slideTime);
+		setTimeout(this.showNextImage.bind(this), this.slideTime);
 	}
 };
