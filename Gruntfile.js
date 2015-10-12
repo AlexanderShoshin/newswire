@@ -11,7 +11,7 @@ module.exports = function(grunt) {
   grunt.file.expand('grunt-config/*.js').forEach(loadGruntConfigPart);
   
   // Default task
-  grunt.registerTask('default', ['clean', 'build']);
+  grunt.registerTask('default', ['clean', 'copy']);
 
   function loadGruntConfigPart(gruntConfigPath) {
     var absolutePath = path.resolve(gruntConfigPath);
